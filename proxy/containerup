@@ -1,0 +1,3 @@
+cd /opt/biocloud/docker/proxy
+sudo docker build -t="swift-proxy" .
+sudo docker run -i -t --net=host --name="proxy" swift-proxy /bin/bash

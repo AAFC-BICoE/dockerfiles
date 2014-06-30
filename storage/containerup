@@ -1,0 +1,11 @@
+cd /opt/biocloud/docker/storage
+echo "sudo docker build -t="swift-storage" ."
+DISK_TO_PASS=
+IP_ADDRESS=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+for DISK in $(cat /opt/biocloud/disk/disklist | grep $IP_ADDRESS)
+do
+        label=$(echo $DISK | cut -d':' -f5)
+	DISK_TO_ADD="-v /srv/node/${label}:/srv/node/${label}:rw"
+	DISK_TO_PASS="$DISK_TO_PASS $DISK_TO_ADD"
+done
+echo "sudo docker run -i -t --net=host --name="storage"${DISK_TO_PASS} swift-storage /bin/bash"
