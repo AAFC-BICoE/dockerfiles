@@ -35,3 +35,6 @@ RUN chown irods:irods $IRODS_HOME/../.bashrc
 ##visible ports and ssh service
 EXPOSE 1247 22
 CMD /usr/sbin/sshd -D
+#Spin up the server
+RUN bash -c 'echo "service postgresql start" >> /.bashrc'
+RUN bash -c 'echo "su irods -c /var/lib/irods/packaging/setup_database.sh" >> /.bashrc'
