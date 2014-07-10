@@ -1,0 +1,3 @@
+cd /opt/biocloud/docker/keystone
+sudo docker build -t="keystone" .
+sudo docker run --name="keystone" --net=host -d keystone
