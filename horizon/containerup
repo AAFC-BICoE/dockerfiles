@@ -1,0 +1,3 @@
+cd /opt/biocloud/docker/horizon
+sudo docker build -t="horizon" .
+sudo docker run --name="horizon" --net=host -d horizon
